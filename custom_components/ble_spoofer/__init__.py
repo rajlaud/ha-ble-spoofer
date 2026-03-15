@@ -284,13 +284,13 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 
         device = BLEDevice(
             address=address,
-            name=name or None,
+            name=name if name else None,
             details={},
             rssi=rssi,
         )
 
         advertisement = AdvertisementData(
-            local_name=name or None,
+            local_name=name if name else None,
             manufacturer_data=manufacturer_data,
             service_data=service_data,
             service_uuids=service_uuids,
