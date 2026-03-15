@@ -1,0 +1,1 @@
+WIP: A custom component that creates a service you can use to inject arbitrary BLE advertisements into a running HA instance, allowing testing of BLE components that don't have the actual devices connect.
