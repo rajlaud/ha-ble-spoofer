@@ -1,0 +1,11 @@
+{
+  "domain": "ble_spoofer",
+  "name": "BLE Spoofer",
+  "version": "1.0.0",
+  "documentation": "https://github.com/rajlaud/ha-ble-spoofer",
+  "issue_tracker": "https://github.com/rajlaud/ha-ble-spoofer/issues",
+  "requirements": [],
+  "dependencies": ["bluetooth"],
+  "codeowners": ["@rajlaud"],
+  "iot_class": "local_push"
+}
