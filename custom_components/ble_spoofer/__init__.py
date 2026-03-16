@@ -283,10 +283,9 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
         )
 
         device = BLEDevice(
-            address=address,
-            name=name if name else None,
-            details={},
-            rssi=rssi,
+            address,
+            name if name else None,
+            {},
         )
 
         advertisement = AdvertisementData(
@@ -311,6 +310,7 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
             advertisement=advertisement,
             connectable=connectable,
             time=time.monotonic(),
+            tx_power=advertisement.tx_power,
         )
 
         adv_callback(service_info)
