@@ -1,0 +1,6 @@
+{
+  "name": "BLE Spoofer",
+  "description": "Inject arbitrary Bluetooth LE advertisements into Home Assistant for testing BLE device discovery without real hardware.",
+  "render_readme": true,
+  "homeassistant": "2023.4.0"
+}

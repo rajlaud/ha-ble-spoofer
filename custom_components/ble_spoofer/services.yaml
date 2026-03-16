@@ -1,0 +1,104 @@
+inject:
+  name: Inject BLE Advertisement
+  description: >
+    Inject an arbitrary Bluetooth LE advertisement into Home Assistant's
+    Bluetooth manager. The advertisement is processed exactly as if it were
+    received from a real hardware scanner, triggering any matching discovery
+    flows (e.g. a victron_ble config-flow entry under Settings → Devices &
+    services → Discovered).
+  fields:
+    address:
+      name: MAC Address
+      description: >
+        Bluetooth MAC address of the (virtual) device.
+        Accepted formats: AA:BB:CC:DD:EE:FF  or  AA-BB-CC-DD-EE-FF
+      required: true
+      example: "AA:BB:CC:DD:EE:FF"
+      selector:
+        text:
+
+    name:
+      name: Local Name
+      description: >
+        Human-readable local name broadcast by the device (optional).
+        Corresponds to the "Complete Local Name" AD type.
+      required: false
+      example: "My BLE Device"
+      selector:
+        text:
+
+    rssi:
+      name: RSSI
+      description: >
+        Received signal-strength indicator in dBm (optional, default -60).
+        Typical values are between -30 (very close) and -100 (very far).
+      required: false
+      example: -60
+      selector:
+        number:
+          min: -127
+          max: 20
+          unit_of_measurement: dBm
+          mode: box
+
+    connectable:
+      name: Connectable
+      description: >
+        Whether the advertisement claims the device is connectable
+        (optional, default false). Most passive scanners see non-connectable
+        advertisements; set to true only if you specifically need to test
+        connectable-device flows.
+      required: false
+      example: false
+      selector:
+        boolean:
+
+    manufacturer_data:
+      name: Manufacturer Data
+      description: >
+        Mapping of manufacturer ID (integer or 0x-prefixed hex) to raw payload.
+        Payload may be hex (with or without 0x prefix / separators) or base64.
+
+        Examples:
+          741: "0102030405"          # decimal key, hex value
+          0x02E1: "AQIDBA=="        # 0x-hex key, base64 value
+          "0x0499": "01:02:03:04"   # string key, colon-separated hex
+      required: false
+      example:
+        741: "0102030405"
+      selector:
+        object:
+
+    service_data:
+      name: Service Data
+      description: >
+        Mapping of service UUID to raw payload.
+        UUIDs may be full 128-bit (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+        or short 16-bit (e.g. "181C" or "0x181C").
+        Payload encoding is the same as manufacturer_data.
+      required: false
+      example:
+        "0000fe95-0000-1000-8000-00805f9b34fb": "5020aa0101"
+      selector:
+        object:
+
+    service_uuids:
+      name: Service UUIDs
+      description: >
+        List of service UUIDs advertised by the device.
+        Same UUID formats as service_data keys.
+      required: false
+      example:
+        - "0000fe95-0000-1000-8000-00805f9b34fb"
+      selector:
+        object:
+
+    source:
+      name: Source
+      description: >
+        Scanner source identifier attached to the advertisement
+        (optional, default "ble_spoofer"). Rarely needs to be changed.
+      required: false
+      example: "ble_spoofer"
+      selector:
+        text:
